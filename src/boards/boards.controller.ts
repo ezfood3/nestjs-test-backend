@@ -28,17 +28,17 @@ export class BoardsController {
     return this.boardsService.createBoard(CreateBoardDto);
   }
 
-  @Get(':id')
+  @Get('/:id')
   getBoardById(@Param('id') id: string): Board {
     return this.boardsService.getBoardById(id);
   }
 
-  @Delete(':id')
+  @Delete('/:id')
   deleteBoard(@Param('id') id: string): void {
     this.boardsService.deleteBoard(id);
   }
 
-  @Patch(':id/status')
+  @Patch('/:id/status')
   updateBoardStatus(
     @Param('id') id: string,
     @Body('status') status: BoardStatus,

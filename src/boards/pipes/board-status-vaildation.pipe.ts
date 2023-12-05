@@ -1,11 +1,12 @@
-import { ArgumentMetadata, BadRequestException, PipeTransform } from "@nestjs/common";
-import { BoardStatus } from "../board.model";
+import {
+  ArgumentMetadata,
+  BadRequestException,
+  PipeTransform,
+} from '@nestjs/common';
+import { BoardStatus } from '../board.model';
 
 export class BoardStatusVaildationPipe implements PipeTransform {
-  readonly StatusOption = [
-    BoardStatus.PUBLIC,
-    BoardStatus.PRIVATE,
-  ]
+  readonly StatusOption = [BoardStatus.PUBLIC, BoardStatus.PRIVATE];
 
   transform(value: any, metadata: ArgumentMetadata) {
     value = value.toUpperCase();
@@ -19,6 +20,6 @@ export class BoardStatusVaildationPipe implements PipeTransform {
 
   private isStatusValue(status: any) {
     const index = this.StatusOption.indexOf(status);
-    return index !== -1
+    return index !== -1;
   }
 }

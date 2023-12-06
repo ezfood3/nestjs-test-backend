@@ -1,5 +1,6 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { BoardsService } from './boards.service';
+import { Board } from './board.entity';
 
 @Controller('boards')
 export class BoardsController {
@@ -16,6 +17,11 @@ export class BoardsController {
   //   return this.boardsService.createBoard(CreateBoardDto);
   // }
 
+
+  @Get('/:id')
+  getBoardByid(@Param('id') id: number): Promise<Board>{
+    return this.boardsService.getBoardById(id);
+  }
   // @Get('/:id')
   // getBoardById(@Param('id') id: string): Board {
   //   return this.boardsService.getBoardById(id);

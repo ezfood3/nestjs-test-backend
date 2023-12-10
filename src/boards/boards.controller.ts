@@ -1,6 +1,15 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { Board } from './board.entity';
+import { CreateBoardDto } from './dto/create-board.dto';
 
 @Controller('boards')
 export class BoardsController {
@@ -16,10 +25,14 @@ export class BoardsController {
   // createBoard(@Body() CreateBoardDto: CreateBoardDto): Board {
   //   return this.boardsService.createBoard(CreateBoardDto);
   // }
-
+  @Post()
+  @UsePipes(ValidationPipe)
+  createBoard(@Body() CreateBoardDto: CreateBoardDto): Promise<Board> {
+    return this.boardsService.createBoard(CreateBoardDto);
+  }
 
   @Get('/:id')
-  getBoardByid(@Param('id') id: number): Promise<Board>{
+  getBoardById(@Param('id') id: number): Promise<Board> {
     return this.boardsService.getBoardById(id);
   }
   // @Get('/:id')

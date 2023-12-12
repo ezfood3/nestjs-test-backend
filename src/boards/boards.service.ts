@@ -16,7 +16,7 @@ export class BoardsService {
   async getAllBoards(user: User): Promise<Board[]> {
     const query = this.boardRepository.createQueryBuilder('board');
 
-    query.where('board.userId = :userId', { userId: user.id });
+    // query.where('board.userId = :userId', { userId: user.id });
 
     const boards = await query.getMany();
 
